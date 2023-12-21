@@ -32,7 +32,6 @@ app.use('/chats',chatRoutes);
 app.use('/messages',messageRoutes);
 app.use('/notification',notificationRoutes);
 
-// PORT undefined, solve it
 const PORT=process.env.PORT;
 const server=app.listen(PORT,()=>{
     console.log(`Request Listen ${PORT}`);
