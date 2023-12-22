@@ -69,7 +69,7 @@ io.on("connection", (socket) => {
     socket.on("new message",(newMessageReceived)=>{
         var chat=newMessageReceived.chat;
 
-        if(!chat.users) return console.log("chat.users not defined");
+        if(!chat.users) return console.log("chat users not defined");
         // console.log(chat.users);
 
         chat.users.forEach((user)=>{
