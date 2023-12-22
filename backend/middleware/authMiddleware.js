@@ -10,7 +10,6 @@ export async function checkAuth(req,res,next){
     {
         try{
             token=req.headers.authorization.slice(7);
-
             //decodes the token
             const decoded=jwt.verify(token,process.env.JWT_SECRET);
             req.user=await User.findById(decoded.user_id).select("-password");
