@@ -27,7 +27,6 @@ const Login = () => {
           isClosable: true,
           position: "bottom"
         })
-        // setUser(data);
         localStorage.setItem("userInfo",JSON.stringify(data));
         navigate("/chats");
       }
