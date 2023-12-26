@@ -8,7 +8,6 @@ const ChatProvider=({children})=>{
     const [selectedChat,setSelectedChat]=useState();
     const [chats,setChats]=useState([]);
     const [notification,setNotification]=useState([]);
-    // const location=useLocation();
     const navigate=useNavigate();
 
     useEffect(()=>{
