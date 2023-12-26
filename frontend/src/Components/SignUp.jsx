@@ -59,7 +59,6 @@ const SignUp = () => {
           "Content-type": "application/json"
         }
       };
-      // console.log(pic);
       const { data } = await axios.post("http://localhost:3000/users/register", { name, email, password,pic }, config);
       console.log(data);
       toast({

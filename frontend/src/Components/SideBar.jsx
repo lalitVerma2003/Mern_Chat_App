@@ -28,7 +28,6 @@ const SideBar = ({fetchAgain,setFetchAgain}) => {
 
     const navigate=useNavigate();
 
-    // Warning in menu item by giving onClick property
     const logOutHandle=()=>{
         localStorage.removeItem("userInfo");
         navigate("/");
@@ -105,12 +104,8 @@ const SideBar = ({fetchAgain,setFetchAgain}) => {
               })
         }
     }
-    // console.log("Selected chat in side bar",selectedChat);
-
-    // console.log("Notification",notification);
 
     const deleteNotification=async(notif)=>{
-        console.log("Notification deleting");
         const config={
             headers:{
                 "Content-type":"application/json",
@@ -119,7 +114,7 @@ const SideBar = ({fetchAgain,setFetchAgain}) => {
         }
         const {data}=await axios.delete(`http://localhost:3000/notification/delete?notifId=${notif._id}`,config);
 
-        console.log(data.notification,data.notification.chat);
+        // console.log(data.notification,data.notification.chat);
         setSelectedChat(data.notification.chat);
         setNotification(notification.filter((n)=> n!==notif));
     }
@@ -158,9 +153,6 @@ const SideBar = ({fetchAgain,setFetchAgain}) => {
                 {!notification.length && "No New Messages"}
                 {notification.map((notif)=>(
                     <MenuItem key={notif._id} onClick={()=> {
-                        // setSelectedChat(notif.notification.chat);
-                        // // delete notification from database
-                        // setNotification(notification.filter((n)=> n!==notif));
                         deleteNotification(notif);
                     }} >
                     {notif.notification.chat.isGroupchat?`New message in ${notif.notification.chat.chatName}`:`New message in ${getSender(user,notif.notification.chat.users)}`}
@@ -182,7 +174,6 @@ const SideBar = ({fetchAgain,setFetchAgain}) => {
                 <MenuItem>My Profile</MenuItem>
                 </ProfileModel>
                 <MenuDivider/>
-                {/* Warning below */}
                 <MenuItem onClick={logOutHandle}>Log Out</MenuItem>
             </MenuList>
         </Menu>

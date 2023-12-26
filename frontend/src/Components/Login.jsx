@@ -11,7 +11,7 @@ const Login = () => {
     const navigate=useNavigate();
 
     const handleForm=async()=>{
-      console.log("Login func");
+      // console.log("Login func");
       try {
         const config = {
           headers: {
