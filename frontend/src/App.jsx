@@ -18,13 +18,10 @@ function App() {
   return (
       <Router>
     <ChatProvider>
-    {/* <div className="App"> */}
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/chats" element={<Chat/>} />
         </Routes>
-
-    {/* </div> */}
     </ChatProvider>
       </Router>
   )

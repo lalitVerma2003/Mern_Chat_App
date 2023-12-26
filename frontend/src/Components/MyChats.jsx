@@ -10,13 +10,12 @@ import GroupChatModal from './GroupChatModal';
 
 
 const MyChats = ({fetchAgain}) => {
-  // const [loggedUser,setLoggedUser]=useState('');
   const {selectedChat,setSelectedChat,user,chats,setChats}=ChatState();
   const toast=useToast();
 
   const fetchChats=async()=>{
     // console.log("Fetching chats...");
-    // try{
+    try{
       const config={
         headers:{
           Authorization: `Bearer ${user.token}`
@@ -25,15 +24,15 @@ const MyChats = ({fetchAgain}) => {
       const {data}=await axios.get("http://localhost:3000/chats",config);
       setChats(data);
       console.log(data);
-    // }catch(err){
-    //   toast({
-    //     title: 'Error Occured while fetching chats in MyChats',
-    //     status: 'error',
-    //     duration: 4000,
-    //     isClosable: true,
-    //     position: "bottom"
-    //   })
-    // }
+    }catch(err){
+      toast({
+        title: 'Error Occured while fetching chats in MyChats',
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+        position: "bottom"
+      })
+    }
   }
 
   const fetchNotifications=async()=>{
@@ -52,12 +51,7 @@ const MyChats = ({fetchAgain}) => {
       }
   }
 
-   // console.log('Notification:',notification);
-
   useEffect(()=>{
-    // I replace loggedUser with user from ChatState
-    // setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
-    // console.log("Fetching chats");
     fetchChats();
     fetchNotifications();
   },[fetchAgain]);
