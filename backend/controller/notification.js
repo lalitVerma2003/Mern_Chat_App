@@ -32,17 +32,6 @@ export async function addNotification(req,res){
             ]
         }]
     });
-    // fullNotification=await Chat.populate(fullNotification,{
-    //     path: "notification.chat"
-    // })
-    // fullNotification=await User.populate(fullNotification,{
-    //     path: "notification.sender",
-    // });
-    // fullNotification=await User.populate(fullNotification,{
-    //     path: "notification.chat.latestMessage",
-    //     select: "name pic email"
-    // });
-    // console.log(fullNotification);
     res.status(200).send(fullNotification);
 }
 

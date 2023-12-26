@@ -1,11 +1,8 @@
 import User from '../models/userModel.js';
 import { generateToken } from '../config/generateToken.js';
 import bcrypt from 'bcryptjs';
-import matchPassword from '../models/userModel.js';
 
 export async function createUser(req,res){
-    // console.log(req.body);
-    // res.json({"message":"Data created"});
 
     const {name,email,password,pic}=req.body;
     if(!name || !email || !password){
@@ -20,11 +17,9 @@ export async function createUser(req,res){
 
     const salt=await bcrypt.genSalt(10);
     const hashpassword=await bcrypt.hash(password,salt);
-    // console.log(hashpassword);
 
     const newUser=new User({name,email,password:hashpassword,pic});
     await newUser.save();
-    // console.log(newUser);
 
     if(newUser){
         res.status(201).json({
@@ -41,11 +36,9 @@ export async function createUser(req,res){
 }
 
 export async function loginUser(req,res){
-    // console.log(req.body);
     const {email,password}=req.body;
 
     const user=await User.findOne({email:email});
-    // console.log(user);
 
     if(user&&(await user.matchPassword(password))){
         res.json({
@@ -63,7 +56,6 @@ export async function loginUser(req,res){
 }
 
 export async function allUsers(req,res){
-    // regex is used to search string or substring in field 
     const query=req.query.search?{
         $or:[
             {name: {$regex:req.query.search,$options:"i"}},
@@ -71,7 +63,6 @@ export async function allUsers(req,res){
         ]
     }:{}
     const users=await User.find(query).find({_id:{$ne:req.user._id}});
-    // console.log(users);
     res.json(users);
     
 }
