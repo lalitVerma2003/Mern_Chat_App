@@ -5,7 +5,7 @@ import User from "../models/userModel.js";
 
 export async function notifications(req,res){
     console.log("Notifications");
-    const notifications=await Notification.find({notification:{$elemMatch:{$eq:"65439657b37e6f9d809abe95"}}});
+    const notifications=await Notification.find({notification:{$elemMatch:{$eq:""}}});
     console.log(notifications);
 }
 
